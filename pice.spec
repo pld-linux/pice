@@ -11,6 +11,7 @@ Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL
 Group:		Development/Debuggers
 Source0:	http://pice.sourceforge.net/%{name}_0_99_build8_src.tar.gz
+# Source0-md5:	f00cc77f1f8739e321e4eaf42af021fb
 Patch0:		%{name}-generic.patch
 Patch1:		%{name}-newline.patch
 URL:		http://pice.sf.net/
