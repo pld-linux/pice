@@ -17,6 +17,7 @@ Patch1:		%{name}-newline.patch
 URL:		http://pice.sf.net/
 %{!?_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	ncurses-devel
+BuildRequires:	rpmbuild(macros) >= 1.118
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -83,16 +84,16 @@ install module/pice.o	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc
 rm -rf $RPM_BUILD_ROOT
 
 %post	-n kernel-%{name}
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver} }%{_kernel_ver}
+%depmod %{_kernel_ver}
 
 %postun -n kernel-%{name}
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver} }%{_kernel_ver}
+%depmod %{_kernel_ver}
 
 %post	-n kernel-smp-%{name}
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver}smp }%{_kernel_ver}smp
+%depmod %{_kernel_ver}smp
 
 %postun -n kernel-smp-%{name}
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver}smp }%{_kernel_ver}smp
+%depmod %{_kernel_ver}smp
 
 %files
 %defattr(644,root,root,755)
