@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/*
 
 %files -n kernel-%{name}
-/lib/modules/%{_kernel_ver}/misc/pice.o
+/lib/modules/%{_kernel_ver}/misc/pice.o*
 
 %files -n kernel-smp-%{name}
-/lib/modules/%{_kernel_ver}smp/misc/pice.o
+/lib/modules/%{_kernel_ver}smp/misc/pice.o*
