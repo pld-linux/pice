@@ -1,0 +1,40 @@
+diff -urN loader.org/main.c loader/main.c
+--- loader.org/main.c	Mon Dec 17 00:53:10 2001
++++ loader/main.c	Mon Dec 17 00:54:37 2001
+@@ -627,7 +627,7 @@
+ ///////////////////////////////////////////////////////////////////////////////////
+ int tryinstall(void)
+ {
+-    char *argv[]={"/sbin/insmod","pice.o",NULL};
++    char *argv[]={"/sbin/modprobe","pice",NULL};
+     int err = 0;
+     int pid,status;
+     
+diff -urN loader.org/makefile loader/makefile
+--- loader.org/makefile	Mon Dec 17 00:53:10 2001
++++ loader/makefile	Mon Dec 17 00:53:49 2001
+@@ -1,5 +1,5 @@
+ CC = gcc
+-CFLAGS := -Wall -fomit-frame-pointer -O2  -DLINUX
++CFLAGS := -Wall -fomit-frame-pointer $(OPT) -DLINUX
+ LDFLAGS := -dynamic -lncurses
+ 
+ OBJS = main.o terminal.o 
+@@ -11,4 +11,4 @@
+ clean:		
+ 		@echo deleting all intermediate files
+ 		@rm $(OBJS) loader -f
+-		make
+\ No newline at end of file
++		make
+diff -urN module.org/makefile module/makefile
+--- module.org/makefile	Mon Dec 17 00:53:16 2001
++++ module/makefile	Mon Dec 17 00:54:05 2001
+@@ -1,6 +1,6 @@
+ CC = gcc
+ #MODCFLAGS := -Wall -c -m486 -g -fomit-frame-pointer -O2 -DMODULE -D__KERNEL__ -DLINUX -DDEBUG -DEXPORT_SYMTAB
+-MODCFLAGS := -Wall -c -m486 -fomit-frame-pointer -O2 -DMODULE -D__KERNEL__ -DLINUX -DEXPORT_SYMTAB
++MODCFLAGS := -Wall -c $(OPT) -fomit-frame-pointer -O2 -DMODULE -D__KERNEL__ -DLINUX -DEXPORT_SYMTAB
+ #MODCFLAGS := -Wall -g -c -m486 -O2 -DMODULE -D__KERNEL__ -DLINUX -DEXPORT_SYMTAB
+ #MODCFLAGS := -Wall -g -c -m486 -O2 -DMODULE -D__KERNEL__ -DLINUX -DDEBUG -DEXPORT_SYMTAB
+ 
