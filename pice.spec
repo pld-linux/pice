@@ -1,8 +1,3 @@
-#%define         _kernel_ver     %(grep UTS_RELEASE %{_kernelsrcdir}/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
-#%define         _kernel_ver_str %(echo %{_kernel_ver} | sed s/-/_/g)
-#%define         smpstr          %{?_with_smp:-smp}
-#%define         smp             %{?_with_smp:1}%{!?_with_smp:0}
-
 Summary:	PrivateICE Linux system level symbolic source debugger
 Summary(pl):	PrivateICE - odpluskwiacz dzia³aj±cy w trybie j±dra
 Name:		pice
@@ -35,15 +30,23 @@ j±dra jak równie¿ odpluskwiacz aplikacji.
 Summary:	Kernel modules for PICE
 Summary(pl):	Modu³ j±dra dla PICE
 Group:		Base/Kernel
+
 %description -n kernel-%{name}
+Kernel modules for PICE.
+
 %description -n kernel-%{name} -l pl
+Modu³ j±dra dla PICE.
 
 %package -n kernel-smp-%{name}
 Summary:	Kernel SMP modules for PICE
 Summary(pl):	Modu³ j±dra SMP dla PICE
 Group:		Base/Kernel
+
 %description -n kernel-smp-%{name}
+Kernel SMP modules for PICE.
+
 %description -n kernel-smp-%{name} -l pl
+Modu³ j±dra SMP dla PICE.
 
 %prep
 %setup -q -c
@@ -51,15 +54,16 @@ Group:		Base/Kernel
 %patch1 -p1
 
 %build
-(cd loader; %{__make} \
-	CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses -Wall -fomit-frame-pointer -DLINUX")
+%{__make} -C loader \
+	CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses -Wall -fomit-frame-pointer -DLINUX"
 
-(cd module;
-%{__make} MODCFLAGS="-Wall -c -fomit-frame-pointer -O2 -DMODULE -D__KERNEL__ -DLINUX -DEXPORT_SYMTAB -D__SMP__ -D__KERNEL_SMP=1";
-mv pice.o pice-smp.o;
-%{__make} clean;
+cd module
+%{__make} \
+	MODCFLAGS="-Wall -c -fomit-frame-pointer -O2 -DMODULE -D__KERNEL__ -DLINUX -DEXPORT_SYMTAB -D__SMP__ -D__KERNEL_SMP=1"
+mv pice.o pice-smp.o
+
+%{__make} clean
 %{__make} MODCFLAGS="-Wall -c -fomit-frame-pointer -O2 -DMODULE -D__KERNEL__ -DLINUX -DEXPORT_SYMTAB"
-)
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -90,7 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/*
 
 %files -n kernel-%{name}
+%defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}/misc/pice.o*
 
 %files -n kernel-smp-%{name}
+%defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}smp/misc/pice.o*
