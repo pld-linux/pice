@@ -1,3 +1,7 @@
+#
+# Conditional build:
+# _without_dist_kernel	- without kernel from distribution
+#
 Summary:	PrivateICE Linux system level symbolic source debugger
 Summary(pl):	PrivateICE - odpluskwiacz dzia³aj±cy w trybie j±dra
 Name:		pice
@@ -12,8 +16,6 @@ Patch1:		%{name}-newline.patch
 URL:		http://pice.sf.net/
 %{!?_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	ncurses-devel
-%{?_with_smp:Obsoletes: kernel-net-%{_orig_name}}
-Prereq:         /sbin/depmod
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -30,6 +32,7 @@ j±dra jak równie¿ odpluskwiacz aplikacji.
 Summary:	Kernel modules for PICE
 Summary(pl):	Modu³ j±dra dla PICE
 Group:		Base/Kernel
+Requires(post,postun):	/sbin/depmod
 
 %description -n kernel-%{name}
 Kernel modules for PICE.
@@ -41,6 +44,7 @@ Modu³ j±dra dla PICE.
 Summary:	Kernel SMP modules for PICE
 Summary(pl):	Modu³ j±dra SMP dla PICE
 Group:		Base/Kernel
+Requires(post,postun):	/sbin/depmod
 
 %description -n kernel-smp-%{name}
 Kernel SMP modules for PICE.
@@ -77,17 +81,17 @@ install module/pice.o	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -n kernel-%{name}
-/sbin/depmod -a
-
-%post -n kernel-smp-%{name}
-/sbin/depmod -a
+%post	-n kernel-%{name}
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver} %{_kernel_ver}
 
 %postun -n kernel-%{name}
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver} %{_kernel_ver}
+
+%post	-n kernel-smp-%{name}
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver}smp %{_kernel_ver}smp
 
 %postun -n kernel-smp-%{name}
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver}smp %{_kernel_ver}smp
 
 %files
 %defattr(644,root,root,755)
