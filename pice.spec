@@ -33,7 +33,7 @@ j±dra jak równie¿ odpluskwiacz aplikacji.
 
 %package -n kernel-%{name}
 Summary:	Kernel modules for PICE
-Summary(pl):	Modu³ j±dra dla PICE.
+Summary(pl):	Modu³ j±dra dla PICE
 Group:		Base/Kernel
 %description -n kernel-%{name}
 %description -n kernel-%{name} -l pl
