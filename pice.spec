@@ -4,7 +4,7 @@
 %define         smp             %{?_with_smp:1}%{!?_with_smp:0}
 
 Summary:	PrivateICE Linux system level symbolic source debugger
-Summary(pl):	Interfejs X do debugerów GDB, DBX i XDB
+Summary(pl):	PrivateICE - odpluskwiacz dzia³aj±cy w trybie j±dra
 Name:		pice
 Version:	0.99.8
 Release:	1@%{_kernel_ver_str}
