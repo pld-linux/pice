@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _without_dist_kernel	- without kernel from distribution
+%bcond_without	dist_kernel	# without kernel from distribution
 #
 Summary:	PrivateICE Linux system level symbolic source debugger
 Summary(pl):	PrivateICE - odpluskwiacz dzia³aj±cy w trybie j±dra
@@ -15,7 +15,7 @@ Source0:	http://pice.sourceforge.net/%{name}_0_99_build8_src.tar.gz
 Patch0:		%{name}-generic.patch
 Patch1:		%{name}-newline.patch
 URL:		http://pice.sf.net/
-%{!?_without_dist_kernel:BuildRequires:	kernel-headers}
+%{?with_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	ncurses-devel
 BuildRequires:	rpmbuild(macros) >= 1.118
 ExclusiveArch:	%{ix86}
