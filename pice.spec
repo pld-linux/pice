@@ -10,8 +10,6 @@ Version:	0.99.8
 Release:	1@%{_kernel_ver_str}
 License:	GPL
 Group:		Development/Debuggers
-Group(de):	Entwicklung/Debugger
-Group(pl):	Programowanie/Odpluskwiacze
 Source0:	http://pice.sourceforge.net/%{name}_0_99_build8_src.tar.gz
 Patch0:		%{name}-generic.patch
 URL:		http://pice.sf.net/
