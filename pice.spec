@@ -13,14 +13,13 @@ Group:		Development/Debuggers
 Source0:	http://pice.sourceforge.net/%{name}_0_99_build8_src.tar.gz
 Patch0:		%{name}-generic.patch
 URL:		http://pice.sf.net/
-BuildRequires:	kernel-headers
+%{!?_without_dist_kernel:BuildRequires:	kernel-headers}
+BuildRequires:	%{kgcc_package}
 BuildRequires:	ncurses-devel
-BuildRequires:	binutils
-ExclusiveArch:	%{ix86}
 %{?_with_smp:Obsoletes: kernel-net-%{_orig_name}}
 Prereq:         /sbin/depmod
-Conflicts:      kernel < %{_kernel_ver}, kernel > %{_kernel_ver}
-Conflicts:      kernel-%{?_with_smp:up}%{!?_with_smp:smp}
+%{!?_without_dist_kernel:%requires_releq_kernel_%{?_with_smp:smp}%{!?_with_smp:up}}
+ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,7 +41,7 @@ j±dra jak równie¿ odpluskwiacz aplikacji.
 	CC="%{__cc}"
 
 %{__make} -C module \
-	CC="kgcc"
+	CC="%{kgcc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
