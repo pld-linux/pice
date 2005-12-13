@@ -61,7 +61,7 @@ Modu³ j±dra SMP dla PICE.
 
 %build
 %{__make} -C loader \
-	CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses -Wall -fomit-frame-pointer -DLINUX"
+	CFLAGS="%{rpmcflags} -I/usr/include/ncurses -Wall -fomit-frame-pointer -DLINUX"
 
 cd module
 %{__make} \
