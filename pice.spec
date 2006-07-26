@@ -2,11 +2,11 @@
 # Conditional build:
 %bcond_without	dist_kernel	# without kernel from distribution
 #
+%define		_rel	1
 Summary:	PrivateICE Linux system level symbolic source debugger
 Summary(pl):	PrivateICE - odpluskwiacz dzia³aj±cy w trybie j±dra
 Name:		pice
 Version:	0.99.8
-%define		_rel	1
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL
 Group:		Development/Debuggers
@@ -14,7 +14,7 @@ Source0:	http://pice.sourceforge.net/%{name}_0_99_build8_src.tar.gz
 # Source0-md5:	f00cc77f1f8739e321e4eaf42af021fb
 Patch0:		%{name}-generic.patch
 Patch1:		%{name}-newline.patch
-URL:		http://pice.sf.net/
+URL:		http://pice.sourceforge.net/
 %{?with_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	ncurses-devel
 BuildRequires:	rpmbuild(macros) >= 1.118
