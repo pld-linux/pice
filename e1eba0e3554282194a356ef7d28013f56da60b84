@@ -1,0 +1,2 @@
+- use requires_releq_kernel_{up,smp}, kgcc{,_package} macros
+  TODO: two kernel-* subpackages with up and smp modules
