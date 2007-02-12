@@ -4,7 +4,7 @@
 #
 %define		_rel	1
 Summary:	PrivateICE Linux system level symbolic source debugger
-Summary(pl):	PrivateICE - odpluskwiacz dzia³aj±cy w trybie j±dra
+Summary(pl.UTF-8):   PrivateICE - odpluskwiacz dziaÅ‚ajÄ…cy w trybie jÄ…dra
 Name:		pice
 Version:	0.99.8
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -26,33 +26,33 @@ PrivateICE (pICE) is a powerful kernel mode debugger that supports
 device driver and kernel as well as application debugging on a single
 LINUX machine.
 
-%description -l pl
-PrivateICE (pICE) jest potê¿nym odpluskwiaczem dzia³aj±cym w trybie
-j±dra jak równie¿ odpluskwiacz aplikacji.
+%description -l pl.UTF-8
+PrivateICE (pICE) jest potÄ™Å¼nym odpluskwiaczem dziaÅ‚ajÄ…cym w trybie
+jÄ…dra jak rÃ³wnieÅ¼ odpluskwiacz aplikacji.
 
 %package -n kernel-%{name}
 Summary:	Kernel modules for PICE
-Summary(pl):	Modu³ j±dra dla PICE
+Summary(pl.UTF-8):   ModuÅ‚ jÄ…dra dla PICE
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 
 %description -n kernel-%{name}
 Kernel modules for PICE.
 
-%description -n kernel-%{name} -l pl
-Modu³ j±dra dla PICE.
+%description -n kernel-%{name} -l pl.UTF-8
+ModuÅ‚ jÄ…dra dla PICE.
 
 %package -n kernel-smp-%{name}
 Summary:	Kernel SMP modules for PICE
-Summary(pl):	Modu³ j±dra SMP dla PICE
+Summary(pl.UTF-8):   ModuÅ‚ jÄ…dra SMP dla PICE
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 
 %description -n kernel-smp-%{name}
 Kernel SMP modules for PICE.
 
-%description -n kernel-smp-%{name} -l pl
-Modu³ j±dra SMP dla PICE.
+%description -n kernel-smp-%{name} -l pl.UTF-8
+ModuÅ‚ jÄ…dra SMP dla PICE.
 
 %prep
 %setup -q -c
