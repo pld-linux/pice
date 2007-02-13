@@ -4,7 +4,7 @@
 #
 %define		_rel	1
 Summary:	PrivateICE Linux system level symbolic source debugger
-Summary(pl.UTF-8):   PrivateICE - odpluskwiacz działający w trybie jądra
+Summary(pl.UTF-8):	PrivateICE - odpluskwiacz działający w trybie jądra
 Name:		pice
 Version:	0.99.8
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -32,7 +32,7 @@ jądra jak również odpluskwiacz aplikacji.
 
 %package -n kernel-%{name}
 Summary:	Kernel modules for PICE
-Summary(pl.UTF-8):   Moduł jądra dla PICE
+Summary(pl.UTF-8):	Moduł jądra dla PICE
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 
@@ -44,7 +44,7 @@ Moduł jądra dla PICE.
 
 %package -n kernel-smp-%{name}
 Summary:	Kernel SMP modules for PICE
-Summary(pl.UTF-8):   Moduł jądra SMP dla PICE
+Summary(pl.UTF-8):	Moduł jądra SMP dla PICE
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 
