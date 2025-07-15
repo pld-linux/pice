@@ -56,8 +56,8 @@ Moduł jądra SMP dla PICE.
 
 %prep
 %setup -q -c
-%patch0 -p0
-%patch1 -p1
+%patch -P0 -p0
+%patch -P1 -p1
 
 %build
 %{__make} -C loader \
